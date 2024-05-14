@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuCargoEmpleadoController">
+   <children>
+      <ImageView fitHeight="759.0" fitWidth="1037.0" layoutX="3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FondoCargoEmpleados.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="131.0" layoutY="285.0" prefHeight="297.0" prefWidth="174.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="96.33334350585938" minHeight="10.0" prefHeight="86.33334350585938" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="69.33331298828125" minHeight="10.0" prefHeight="50.666656494140625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="76.33331298828125" minHeight="10.0" prefHeight="72.33331298828125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="76.33331298828125" minHeight="10.0" prefHeight="72.33331298828125" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregarCo" mnemonicParsing="false" onAction="#Agregar" prefHeight="61.0" prefWidth="145.0" stylesheets="@../resource/FrescoMarket.css" text="Agregar" GridPane.halignment="CENTER">
+               <graphic>
+                  <ImageView fx:id="imgAgregar" fitHeight="39.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenAgregar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEliminarCo" mnemonicParsing="false" onAction="#eliminar" prefHeight="61.0" prefWidth="145.0" stylesheets="@../resource/FrescoMarket.css" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fx:id="imgEliminar" fitHeight="41.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenEliminar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEditarCo" mnemonicParsing="false" onAction="#editar" prefHeight="61.0" prefWidth="145.0" stylesheets="@../resource/FrescoMarket.css" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fx:id="imgEditar" fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenActualizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnReportesCo" mnemonicParsing="false" onAction="#reporte" prefHeight="61.0" prefWidth="145.0" stylesheets="@../resource/FrescoMarket.css" text="Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fx:id="imgReportes" fitHeight="40.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenReporte.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <TableView fx:id="tblCargo" layoutX="371.0" layoutY="272.0" onMouseClicked="#seleccionar" prefHeight="316.0" prefWidth="549.0">
+         <columns>
+            <TableColumn fx:id="colIdCargo" prefWidth="122.6666259765625" text="idCargoEmpleado" />
+            <TableColumn fx:id="colNomCar" prefWidth="153.99990844726562" text="nombreCargo" />
+            <TableColumn fx:id="colDescCar" prefWidth="271.3332722981771" text="descripcionCargo" />
+         </columns>
+      </TableView>
+      <GridPane layoutX="168.0" layoutY="219.0" prefHeight="43.0" prefWidth="262.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="44.11112976074219" minHeight="10.0" prefHeight="41.4444580078125" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="idCargoEmpleado" GridPane.halignment="CENTER" />
+            <TextField fx:id="txtIdCargo" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="415.0" layoutY="216.0" prefHeight="43.0" prefWidth="262.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="44.11112976074219" minHeight="10.0" prefHeight="41.4444580078125" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="nombreCargo" GridPane.halignment="CENTER" />
+            <TextField fx:id="txtNomCar" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="662.0" layoutY="215.0" prefHeight="43.0" prefWidth="262.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints maxHeight="44.11112976074219" minHeight="10.0" prefHeight="41.4444580078125" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="descripcionCargo" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDescCar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnHomeCa" layoutX="118.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleButtonAction" stylesheets="@../resource/FrescoMarket.css">
+         <graphic>
+            <ImageView fitHeight="65.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ImagenHome.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

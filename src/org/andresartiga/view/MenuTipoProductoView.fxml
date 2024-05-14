@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuTipoProductoController">
+   <children>
+      <ImageView fitHeight="525.0" fitWidth="821.0" layoutX="6.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FondoTipoProducto.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblTipoProducto" layoutX="254.0" layoutY="195.0" onMouseClicked="#seleccionar" prefHeight="303.0" prefWidth="402.0" stylesheets="@../resource/FrescoMarket.css">
+         <columns>
+            <TableColumn fx:id="colIdTi" prefWidth="123.33331298828125" text="numeroDocumento" />
+            <TableColumn fx:id="colDescTi" prefWidth="277.3333740234375" text="descripcion" />
+         </columns>
+      </TableView>
+      <GridPane layoutX="88.0" layoutY="238.0" prefHeight="191.0" prefWidth="106.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="54.4" minHeight="10.0" prefHeight="40.000006103515624" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="47.19997863769531" minHeight="6.399999999999999" prefHeight="47.19997863769531" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="44.79999999999998" minHeight="4.000021362304693" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="37.599999999999994" minHeight="2.3999999999999915" prefHeight="37.599999999999994" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregarTi" mnemonicParsing="false" onAction="#Agregar" prefHeight="60.0" prefWidth="100.0" stylesheets="@../resource/FrescoMarket.css" text="Agregar">
+               <graphic>
+                  <ImageView fx:id="imgAgregar" fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenAgregar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEliminarTi" mnemonicParsing="false" onAction="#eliminar" prefHeight="45.0" prefWidth="101.0" stylesheets="@../resource/FrescoMarket.css" text="Eliminar" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fx:id="imgEliminar" fitHeight="74.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenEliminar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEditarTi" mnemonicParsing="false" onAction="#editar" prefHeight="39.0" prefWidth="99.0" stylesheets="@../resource/FrescoMarket.css" text="Editar" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fx:id="imgEditar" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenActualizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnReportesTi" mnemonicParsing="false" onAction="#reporte" prefHeight="58.0" prefWidth="100.0" stylesheets="@../resource/FrescoMarket.css" text="Reportes" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fx:id="imgReportes" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenReportes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane layoutX="326.0" layoutY="98.0" prefHeight="90.0" prefWidth="262.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="44.11112976074219" minHeight="10.0" prefHeight="41.4444580078125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="48.5555419921875" minHeight="10.0" prefHeight="48.5555419921875" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="idTipoProducto" GridPane.halignment="CENTER" />
+            <TextField fx:id="txtIdTipo" GridPane.columnIndex="1" />
+            <Label text="descripcion" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDescTi" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnRegresarTi" layoutX="81.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleButtonAction" stylesheets="@../resource/FrescoMarket.css">
+         <graphic>
+            <ImageView fitHeight="64.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ImagenHome.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

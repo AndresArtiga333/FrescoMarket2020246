@@ -1,0 +1,28 @@
+.menubar{
+    -fx-background-color: #E56181;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.table-view.column-header{
+        -fx-cell-size: 20;
+    -fx-background-color: #E61901;
+}
+.table-view.column-background.filler{
+    -fx-cell-size: 20;
+    -fx-background-color: #E61901;
+    
+}
+
+.table-row-cell:selected{
+    -fx-background-color: #E56181;
+}
+.button{
+    -fx-background-color: #65DBD9;
+    -fx-cursor: hand;
+    -fx-font-size: 10px;
+    -fx-text-fill: white;
+}

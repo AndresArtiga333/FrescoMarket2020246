@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuProveedoresController">
+   <children>
+      <ImageView fitHeight="707.0" fitWidth="1213.0" layoutX="-2.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FondoProveedores.png" />
+         </image></ImageView>
+      <TableView fx:id="tblProveedores" layoutX="205.0" layoutY="307.0" onMouseClicked="#seleccionar" prefHeight="320.0" prefWidth="985.0" stylesheets="@../resource/FrescoMarket.css">
+         <columns>
+            <TableColumn fx:id="colCodP" prefWidth="110.0" text="codigoProveedor" />
+            <TableColumn fx:id="colNitP" prefWidth="100.0" text="nitProveedor" />
+            <TableColumn fx:id="colNomP" prefWidth="130.0" text="nombreProveedor" />
+            <TableColumn fx:id="colApeP" prefWidth="129.0" text="apellidoProveedor" />
+            <TableColumn fx:id="colDirP" prefWidth="150.0" text="direccionProveedor" />
+            <TableColumn fx:id="colRazon" prefWidth="108.6666259765625" text="razonSocial" />
+            <TableColumn fx:id="colContacP" prefWidth="112.00006103515625" text="contactoPrincipal" />
+            <TableColumn fx:id="colPagP" prefWidth="143.33333333333337" text="paginaWeb" />
+         </columns>
+      </TableView>
+      <GridPane layoutX="68.0" layoutY="361.0" prefHeight="191.0" prefWidth="106.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="54.4" minHeight="10.0" prefHeight="40.000006103515624" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="47.19997863769531" minHeight="6.399999999999999" prefHeight="47.19997863769531" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="44.79999999999998" minHeight="4.000021362304693" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="37.599999999999994" minHeight="2.3999999999999915" prefHeight="37.599999999999994" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregarP" mnemonicParsing="false" onAction="#Agregar" prefHeight="60.0" prefWidth="100.0" stylesheets="@../resource/FrescoMarket.css" text="Agregar">
+               <graphic>
+                  <ImageView fx:id="imgAgregar" fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenAgregar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEliminarP" mnemonicParsing="false" onAction="#eliminar" prefHeight="45.0" prefWidth="101.0" stylesheets="@../resource/FrescoMarket.css" text="Eliminar" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fx:id="imgEliminar" fitHeight="74.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenEliminar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEditarP" mnemonicParsing="false" onAction="#editar" prefHeight="39.0" prefWidth="99.0" stylesheets="@../resource/FrescoMarket.css" text="Editar" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fx:id="imgEditar" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenActualizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnReportesP" mnemonicParsing="false" onAction="#reporte" prefHeight="58.0" prefWidth="100.0" stylesheets="@../resource/FrescoMarket.css" text="Reportes" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fx:id="imgReportes" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ImagenReportes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <GridPane layoutX="229.0" layoutY="165.0" prefHeight="118.0" prefWidth="279.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="codigoProveedor" GridPane.halignment="CENTER" />
+            <TextField fx:id="txtCodigoP" GridPane.columnIndex="1" />
+            <Label text="nitProveedor" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="txtNitP" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="nombreProveedor" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField fx:id="txtNomP" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="apellidoProveedor" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <TextField fx:id="txtApeP" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="564.0" layoutY="169.0" prefHeight="119.0" prefWidth="287.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="direccionProveedor" GridPane.halignment="CENTER" />
+            <TextField fx:id="txtDirP" GridPane.columnIndex="1" />
+            <Label text="razonSocial" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="txtRazon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="contactoPrincipal" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <TextField fx:id="txtConP" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="paginaWeb" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <TextField fx:id="txtPaginaWeb" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnRegresarP" layoutX="42.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleButtonAction" stylesheets="@../resource/FrescoMarket.css">
+         <graphic>
+            <ImageView fitHeight="77.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ImagenHome.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+   </children>
+</AnchorPane>
