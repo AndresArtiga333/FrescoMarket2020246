@@ -13,26 +13,26 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuProductosController">
    <children>
-      <ComboBox layoutX="411.0" layoutY="148.0" prefWidth="150.0" />
-      <ComboBox layoutX="411.0" layoutY="116.0" prefWidth="150.0" />
-      <TextField layoutX="44.0" layoutY="51.0" />
-      <TextField layoutX="51.0" layoutY="91.0" />
-      <TextField layoutX="44.0" layoutY="129.0" />
-      <TextField layoutX="226.0" layoutY="38.0" />
-      <TextField layoutX="226.0" layoutY="78.0" />
-      <TextField layoutX="226.0" layoutY="117.0" />
-      <TextField layoutX="412.0" layoutY="38.0" />
-      <TableView layoutX="144.0" layoutY="186.0" prefHeight="200.0" prefWidth="535.0">
+      <ComboBox fx:id="cmbProveedores" layoutX="411.0" layoutY="91.0" prefWidth="150.0" />
+      <ComboBox fx:id="cmbTipoProducto" layoutX="411.0" layoutY="50.0" prefWidth="150.0" />
+      <TextField fx:id="txtCodigoPro" layoutX="44.0" layoutY="51.0" />
+      <TextField fx:id="txtDescripcionPro" layoutX="51.0" layoutY="91.0" />
+      <TextField fx:id="txtPrecioUPro" layoutX="44.0" layoutY="129.0" />
+      <TextField fx:id="txtPrecioDoPro" layoutX="226.0" layoutY="38.0" />
+      <TextField fx:id="txtPrecioMPro" layoutX="226.0" layoutY="78.0" />
+      <TextField fx:id="txtExistenciaPro" layoutX="226.0" layoutY="117.0" />
+      <TableView fx:id="tblProductos" layoutX="144.0" layoutY="186.0" prefHeight="200.0" prefWidth="609.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colCodigoPro" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="colDescripcionPro" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colPrecioUPro" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colPrecioDoPro" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colPrecioMPro" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colExistenciaPro" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colTipoProducto" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="colProveedores" prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
       <GridPane layoutX="31.0" layoutY="190.0" prefHeight="191.0" prefWidth="106.0">
@@ -55,7 +55,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnEliminarP" mnemonicParsing="false" onAction="#eliminar" prefHeight="45.0" prefWidth="101.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Eliminar" GridPane.rowIndex="1">
+            <Button fx:id="btnEliminarP" mnemonicParsing="false" prefHeight="45.0" prefWidth="101.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Eliminar" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fx:id="imgEliminar" fitHeight="74.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,7 +64,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnEditarP" mnemonicParsing="false" onAction="#editar" prefHeight="39.0" prefWidth="99.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Editar" GridPane.rowIndex="2">
+            <Button fx:id="btnEditarP" mnemonicParsing="false" prefHeight="39.0" prefWidth="99.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Editar" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fx:id="imgEditar" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -73,7 +73,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnReportesP" mnemonicParsing="false" onAction="#reporte" prefHeight="58.0" prefWidth="100.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Reportes" GridPane.rowIndex="3">
+            <Button fx:id="btnReportesP" mnemonicParsing="false" prefHeight="58.0" prefWidth="100.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Reportes" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fx:id="imgReportes" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -84,5 +84,6 @@
             </Button>
          </children>
       </GridPane>
+      <Button fx:id="btnRegresar" layoutX="460.0" layoutY="142.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
    </children>
 </AnchorPane>

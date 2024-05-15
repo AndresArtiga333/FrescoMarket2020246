@@ -90,5 +90,8 @@ public class Proveedores {
         this.paginaWeb = paginaWeb;
     }
     
-    
+    @Override
+    public String toString() {
+        return getCodigoProveedor() + ") " + getNombreProveedor();
+    }
 }

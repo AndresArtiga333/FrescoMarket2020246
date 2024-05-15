@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.andresartiga.bean.Productos;
 import org.andresartiga.bean.Proveedores;
@@ -34,7 +35,7 @@ import org.andresartiga.system.Principal;
  */
 public class MenuProductosController implements Initializable {
     private Principal escenarioPrincipal;
-    private enum operaciones {AGREGAR, ELIMINAR, CANCELAR, NINGUNO}
+    private enum operaciones {ACTUALIZAR, ELIMINAR, CANCELAR, NINGUNO}
     private operaciones tipoDeOperaciones = operaciones.NINGUNO;
     private ObservableList <Productos> listaProductos;
     private ObservableList <Proveedores> listaProveedores;
@@ -70,8 +71,6 @@ public class MenuProductosController implements Initializable {
     @FXML
     private TableColumn colPrecioMPro;
     @FXML
-    private TableColumn colImagenPro;
-    @FXML
     private TableColumn colExistenciaPro;
     @FXML
     private TableColumn colTipoProducto;
@@ -89,19 +88,16 @@ public class MenuProductosController implements Initializable {
     private TextField txtExistenciaPro;
     @FXML
     private TextField txtPrecioMPro;
-
-    @FXML
-    private TextField txtImagenPro;
     @FXML
     private ComboBox cmbTipoProducto;
     @FXML
     private ComboBox cmbProveedores;
     
-    public Main getEscenarioPrincipal() {
+    public Principal getEscenarioPrincipal() {
         return escenarioPrincipal;
     }
 
-    public void setEscenarioPrincipal(Main escenarioPrincipal) {
+    public void setEscenarioPrincipal(Principal escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
     }
     
@@ -120,42 +116,95 @@ public class MenuProductosController implements Initializable {
         colPrecioUPro.setCellValueFactory(new PropertyValueFactory<>("precioUnitario"));
         colPrecioDoPro.setCellValueFactory(new PropertyValueFactory<>("precioDocena"));
         colPrecioMPro.setCellValueFactory(new PropertyValueFactory<>("precioMayor"));
-        colImagenPro.setCellValueFactory(new PropertyValueFactory<>("imagenProducto"));
         colExistenciaPro.setCellValueFactory(new PropertyValueFactory<>("existencia"));
-        colTipoProducto.setCellValueFactory(new PropertyValueFactory<>("codigoTipoProducto"));
+        colTipoProducto.setCellValueFactory(new PropertyValueFactory<>("idTipoProducto"));
         colProveedores.setCellValueFactory(new PropertyValueFactory<>("codigoProveedor"));
     }
     
+    public void seleccionar(){
+        txtCodigoPro.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto()));
+        txtDescripcionPro.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getDescripcionProducto()));
+        txtPrecioUPro.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getPrecioUnitario()));
+        txtPrecioDoPro.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getPrecioDocena()));
+        txtPrecioMPro.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getPrecioMayor()));
+        cmbTipoProducto.getSelectionModel().select(buscarTipoProducto(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getIdTipoProducto()));
+        cmbProveedores.getSelectionModel().select(this);
+    }
     
+        public TipoProducto buscarTipoProducto (int idTipoProducto ){
+        TipoProducto resultado = null;
+        try{
+         PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_buscarTipoProducto(?)}");
+         procedimiento.setInt(1, idTipoProducto);
+         ResultSet registro = procedimiento.executeQuery();
+         while (registro.next()){
+             resultado = new TipoProducto(registro.getInt("idTipoProducto"),
+                                            registro.getString("descripcion")
+             );
+         }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }    
     
-    public ObservableList<Productos> getProductos(){
-        ArrayList<Productos> lista = new ArrayList<Productos>();
+        return resultado;
+    }
+        
+        public Proveedores buscarProveedor(int codigoProveedor){
+            Proveedores resultado = null;
+            try{
+                PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_}")
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return resultado;
+        }
+        
+    public ObservableList<TipoProducto> getTipoProducto() {
+
+        ArrayList<TipoProducto> listaTip = new ArrayList<>();
         ResultSet resultado = null;
 
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("call sp_listarProveedores;");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("call sp_listarTipoProducto;");
             resultado = procedimiento.executeQuery();
             while (resultado.next()) {
-                lista.add(new Productos(resultado.getString("codigoProducto"),
-                        resultado.getString("descripcionProducto"),
-                        resultado.getDouble("precioUnitario"),
-                        resultado.getDouble("precioDocena"),
-                        resultado.getDouble("precioMayor"),
-                        resultado.getString("imagenProducto"),
-                        resultado.getInt("existencia"),
-                        resultado.getInt("codigoTipoProducto"),
-                        resultado.getInt("codigoProveedor")
+                listaTip.add(new TipoProducto(resultado.getInt("idTipoProducto"),
+                        resultado.getString("descripcion")
                 ));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return listaProductos = FXCollections.observableList(lista);
-        
-        
+        return listaTipoProducto = FXCollections.observableList(listaTip);
     }
     
+    public ObservableList<Productos> getProductos(){
+    ArrayList<Productos> lista = new ArrayList<Productos>();
+    try{
+        PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_listarProductos()}");
+        ResultSet resultado = procedimiento.executeQuery();
+        while(resultado.next()){
+            lista.add(new Productos (resultado.getInt("codigoProducto"),
+                                    resultado.getString("descripcionProducto"),
+                                    resultado.getDouble("precioUnitario"),
+                                    resultado.getDouble("precioDocena"),
+                                    resultado.getDouble("precioMayor"),
+                                    resultado.getInt("existencia"),
+                                    resultado.getInt("idTipoProducto"),
+                                    resultado.getInt("codigoProveedor")            
+            ));
+        }
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+    
+    
+        return listaProductos = FXCollections.observableArrayList(lista);
+        
+    }
+   
     public ObservableList<Proveedores> getProveedores() {
 
         ArrayList<Proveedores> listaPro = new ArrayList<>();
@@ -166,9 +215,9 @@ public class MenuProductosController implements Initializable {
             resultado = procedimiento.executeQuery();
             while (resultado.next()) {
                 listaPro.add(new Proveedores(resultado.getInt("codigoProveedor"),
-                        resultado.getString("NITProveedor"),
-                        resultado.getString("nombresProveedor"),
-                        resultado.getString("apellidosProveedor"),
+                        resultado.getString("nitProveedor"),
+                        resultado.getString("nombreProveedor"),
+                        resultado.getString("apellidoProveedor"),
                         resultado.getString("direccionProveedor"),
                         resultado.getString("razonSocial"),
                         resultado.getString("contactoPrincipal"),
@@ -182,37 +231,71 @@ public class MenuProductosController implements Initializable {
         return listaProveedores = FXCollections.observableList(listaPro);
     }
     
-    public ObservableList<TipoProducto> getTipoProducto() {
+        public void Agregar() {
+        switch (tipoDeOperaciones) {
+            case NINGUNO:
+                activarControles();
+                btnAgregar.setText("Guardar");
+                btnEliminar.setText("Cancelar");
+                btnEditar.setDisable(true);
+                btnReportes.setDisable(true);
+                imgAgregar.setImage((new Image("/org/andresartiga/images/ImagenGuardar.png")));
+                imgEliminar.setImage((new Image("/org/andresartiga/images/ImagenCancelar.png")));
+                
+                tipoDeOperaciones = MenuProductosController.operaciones.ACTUALIZAR;
+                break;
 
-        ArrayList<TipoProducto> listaTip = new ArrayList<>();
-        ResultSet resultado = null;
-
-        try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("call sp_listarTipoProducto;");
-            resultado = procedimiento.executeQuery();
-            while (resultado.next()) {
-                listaTip.add(new TipoProducto(resultado.getInt("codigoTipoProducto"),
-                        resultado.getString("descripcion")
-                ));
-            }
-        } catch (Exception e) {
+            case ACTUALIZAR:
+                guardar();
+                desactivarControles();
+                limpiarControles();
+                btnAgregar.setText("Agregar");
+                btnEliminar.setText("Eliminar");
+                btnEditar.setDisable(false);
+                btnReportes.setDisable(false);
+                imgAgregar.setImage(new Image("/org/andresartiga/images/ImagenAgregar.png"));
+                imgEliminar.setImage(new Image("/org/andresartiga/images/ImagenEliminar.png"));
+                cargarDatos();
+                tipoDeOperaciones = MenuProductosController.operaciones.NINGUNO;
+                break;
+                
+        }
+    }
+        
+    public void guardar(){
+        Productos registro = new Productos();
+        registro.setCodigoProducto(Integer.parseInt(txtCodigoPro.getText()));
+        registro.setCodigoProveedor((((Proveedores)cmbProveedores.getSelectionModel().getSelectedItem()).getCodigoProveedor()));
+        registro.setIdTipoProducto((((TipoProducto)cmbTipoProducto.getSelectionModel().getSelectedItem()).getIdTipoProducto()));
+        registro.setDescripcionProducto(txtDescripcionPro.getText());
+        registro.setPrecioUnitario(Double.parseDouble(txtPrecioUPro.getText()));
+        registro.setPrecioDocena(Double.parseDouble(txtPrecioDoPro.getText()));
+        registro.setPrecioMayor(Double.parseDouble(txtPrecioMPro.getText()));
+        registro.setExistencia(Integer.parseInt(txtExistenciaPro.getText()));
+        try{
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarProducto(?, ?, ?, ?, ?, ?, ?, ?)}");
+            procedimiento.setInt(1, registro.getCodigoProducto());
+            procedimiento.setString(2, registro.getDescripcionProducto());
+            procedimiento.setDouble(3, registro.getPrecioUnitario());
+            procedimiento.setDouble(4, registro.getPrecioDocena());
+            procedimiento.setDouble(5, registro.getPrecioMayor());
+            procedimiento.setInt(6, registro.getExistencia());
+            procedimiento.setInt(7, registro.getIdTipoProducto());
+            procedimiento.setInt(8, registro.getCodigoProveedor());
+            procedimiento.execute();
+            
+            listaProductos.add(registro);
+      }catch(Exception e){
             e.printStackTrace();
         }
-
-        return listaTipoProducto = FXCollections.observableList(listaTip);
     }
     
-    
-    
-    
-    
-    public void activarControlers(){
+    public void activarControles(){
         txtCodigoPro.setEditable(true);
         txtDescripcionPro.setEditable(true);
         txtPrecioUPro.setEditable(true);
         txtPrecioDoPro.setEditable(true);
         txtPrecioMPro.setEditable(true);
-        txtImagenPro.setEditable(true);
         txtExistenciaPro.setEditable(true);
         cmbTipoProducto.setEditable(true);
         cmbProveedores.setEditable(true);
@@ -224,19 +307,17 @@ public class MenuProductosController implements Initializable {
         txtPrecioUPro.setEditable(false);
         txtPrecioDoPro.setEditable(false);
         txtPrecioMPro.setEditable(false);
-        txtImagenPro.setEditable(false);
         txtExistenciaPro.setEditable(false);
         cmbTipoProducto.setEditable(false);
         cmbProveedores.setEditable(false);
     }
     
-    public void limpíarControles(){
+    public void limpiarControles(){
         txtCodigoPro.clear();
         txtDescripcionPro.clear();
         txtPrecioUPro.clear();
         txtPrecioDoPro.clear();
         txtPrecioMPro.clear();
-        txtImagenPro.clear();
         txtExistenciaPro.clear();
         tblProductos.getSelectionModel().getSelectedItem();
         cmbTipoProducto.getSelectionModel().getSelectedItem();
@@ -246,7 +327,7 @@ public class MenuProductosController implements Initializable {
     
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
-            escenarioPrincipal.MenuPrincipalView();
+            escenarioPrincipal.menuPrincipalView();
         }
     }
     

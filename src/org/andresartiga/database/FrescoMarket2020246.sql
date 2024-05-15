@@ -48,7 +48,6 @@ create table Productos(
 	precioUnitario decimal(10,2),
     precioDocena decimal(10,2),
     precioMayor decimal(10,2),
-    imagenProducto varchar(45),
     existencia int not null,
     idTipoProducto int not null,
     codigoProveedor int not null,
@@ -275,19 +274,22 @@ delimiter ;
 
 delimiter $$
 	create procedure sp_agregarProducto(in codPro int, in descripPro varchar(45), in precioU decimal(10,2), in precioD decimal(10,2), in precioM decimal(10,2),
-    in imagenPro varchar(45), in existenciaPro int, in idTipo int, in codCar int )
+	in existenciaPro int, in idTipo int, in codCar int )
     begin
-		insert into Productos (codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor, imagenProducto,
+		insert into Productos (codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor,
         existencia, idTipoProducto, codigoProveedor)
-        values (codPro, descripPro, precioU, precioD, precioM, imagenPro, existencia, idTipo, codCar);
+        values (codPro, descripPro, precioU, precioD, precioM, existenciaPro, idTipo, codCar);
     end$$
 delimiter ;
 
-call sp_agregarProducto(1, "doritos", 3.50, 38, 100.50, "hola", 1, 1, 1);
+call sp_agregarProducto(3, "kit kat", 0.50, 7, 50, 3, 1, 1);
 
 delimiter $$
 create procedure sp_listarProductos ()
 	begin
-    select 
+    select codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor,
+        existencia, idTipoProducto, codigoProveedor from Productos; 
     end$$
 delimiter ;
+
+call sp_listarProductos();

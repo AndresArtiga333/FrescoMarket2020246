@@ -24,6 +24,7 @@ import org.andresartiga.controller.MenuCargoEmpleadoController;
 import org.andresartiga.controller.MenuClientesController;
 import org.andresartiga.controller.MenuComprasController;
 import org.andresartiga.controller.MenuPrincipalControlador;
+import org.andresartiga.controller.MenuProductosController;
 import org.andresartiga.controller.MenuProveedoresController;
 import org.andresartiga.controller.MenuTipoProductoController;
 import org.andresartiga.controller.ProgramadorController;
@@ -138,6 +139,15 @@ public class Principal extends Application {
             vistaCargo.setEscenarioPrincipal(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuProductosWiew(){
+        try{
+            MenuProductosController vistaPro =(MenuProductosController)cambiarEscena("MenuProductosView.fxml", 788, 400);
+            vistaPro.setEscenarioPrincipal(this);
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
