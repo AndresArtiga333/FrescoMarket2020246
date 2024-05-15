@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ComboBox layoutX="411.0" layoutY="148.0" prefWidth="150.0" />
+      <ComboBox layoutX="411.0" layoutY="116.0" prefWidth="150.0" />
+      <TextField layoutX="44.0" layoutY="51.0" />
+      <TextField layoutX="51.0" layoutY="91.0" />
+      <TextField layoutX="44.0" layoutY="129.0" />
+      <TextField layoutX="226.0" layoutY="38.0" />
+      <TextField layoutX="226.0" layoutY="78.0" />
+      <TextField layoutX="226.0" layoutY="117.0" />
+      <TextField layoutX="412.0" layoutY="38.0" />
+      <TableView layoutX="144.0" layoutY="186.0" prefHeight="200.0" prefWidth="535.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="31.0" layoutY="190.0" prefHeight="191.0" prefWidth="106.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="54.4" minHeight="10.0" prefHeight="40.000006103515624" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="47.19997863769531" minHeight="6.399999999999999" prefHeight="47.19997863769531" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="44.79999999999998" minHeight="4.000021362304693" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="37.599999999999994" minHeight="2.3999999999999915" prefHeight="37.599999999999994" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregarP" mnemonicParsing="false" onAction="#Agregar" prefHeight="60.0" prefWidth="100.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Agregar">
+               <graphic>
+                  <ImageView fx:id="imgAgregar" fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/images/ImagenAgregar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEliminarP" mnemonicParsing="false" onAction="#eliminar" prefHeight="45.0" prefWidth="101.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Eliminar" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fx:id="imgEliminar" fitHeight="74.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/images/ImagenEliminar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnEditarP" mnemonicParsing="false" onAction="#editar" prefHeight="39.0" prefWidth="99.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Editar" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fx:id="imgEditar" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/images/ImagenActualizar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnReportesP" mnemonicParsing="false" onAction="#reporte" prefHeight="58.0" prefWidth="100.0" stylesheets="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/resource/FrescoMarket.css" text="Reportes" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fx:id="imgReportes" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Proyecto/FrescoMarket1/src/org/andresartiga/images/ImagenReportes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

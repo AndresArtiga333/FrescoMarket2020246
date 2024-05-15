@@ -25,8 +25,6 @@ create table Compras(
     totalDocumento decimal(10,2)
 );
 
-
-
 create table CargoEmpleado(
 	idCargoEmpleado int primary key not null,
     nombreCargo varchar(45),
@@ -42,6 +40,20 @@ create table Proveedores(
     razonSocial varchar(60),
     contactoPrincipal varchar(100),
     paginaWeb varchar(50)
+);
+
+create table Productos(
+	codigoProducto int primary key,
+    descripcionProducto varchar(45),
+	precioUnitario decimal(10,2),
+    precioDocena decimal(10,2),
+    precioMayor decimal(10,2),
+    imagenProducto varchar(45),
+    existencia int not null,
+    idTipoProducto int not null,
+    codigoProveedor int not null,
+    constraint FK_idTipoProducto foreign key (idTipoProducto) references TipoProducto(idTipoProducto),
+    constraint FK_codigoProveedor foreign key (codigoProveedor) references Proveedores(codigoProveedor)
 );
 
 delimiter $$
@@ -259,4 +271,23 @@ delimiter $$
         where
         codigoProveedor = codProve;
 	end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_agregarProducto(in codPro int, in descripPro varchar(45), in precioU decimal(10,2), in precioD decimal(10,2), in precioM decimal(10,2),
+    in imagenPro varchar(45), in existenciaPro int, in idTipo int, in codCar int )
+    begin
+		insert into Productos (codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor, imagenProducto,
+        existencia, idTipoProducto, codigoProveedor)
+        values (codPro, descripPro, precioU, precioD, precioM, imagenPro, existencia, idTipo, codCar);
+    end$$
+delimiter ;
+
+call sp_agregarProducto(1, "doritos", 3.50, 38, 100.50, "hola", 1, 1, 1);
+
+delimiter $$
+create procedure sp_listarProductos ()
+	begin
+    select 
+    end$$
 delimiter ;
