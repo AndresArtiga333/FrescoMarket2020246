@@ -25,8 +25,6 @@ create table Compras(
     totalDocumento decimal(10,2)
 );
 
-
-
 create table CargoEmpleado(
 	idCargoEmpleado int primary key not null,
     nombreCargo varchar(45),
@@ -42,6 +40,19 @@ create table Proveedores(
     razonSocial varchar(60),
     contactoPrincipal varchar(100),
     paginaWeb varchar(50)
+);
+
+create table Productos(
+	codigoProducto int primary key,
+    descripcionProducto varchar(45),
+	precioUnitario decimal(10,2),
+    precioDocena decimal(10,2),
+    precioMayor decimal(10,2),
+    existencia int not null,
+    idTipoProducto int not null,
+    codigoProveedor int not null,
+    constraint FK_idTipoProducto foreign key (idTipoProducto) references TipoProducto(idTipoProducto) on delete cascade,
+    constraint FK_codigoProveedor foreign key (codigoProveedor) references Proveedores(codigoProveedor) on delete cascade
 );
 
 delimiter $$
@@ -259,4 +270,50 @@ delimiter $$
         where
         codigoProveedor = codProve;
 	end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_buscarProveedor(in codPro int)
+    begin
+		select Proveedores.codigoProveedor, Proveedores.nitProveedor, Proveedores.nombreProveedor, Proveedores.apellidoProveedor, Proveedores.direccionProveedor,
+    Proveedores.razonSocial, Proveedores.contactoPrincipal, Proveedores.paginaWeb from Proveedores 
+    where codigoProveedor = codPro;
+    end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_agregarProducto(in codPro int, in descripPro varchar(45), in precioU decimal(10,2), in precioD decimal(10,2), in precioM decimal(10,2),
+	in existenciaPro int, in idTipo int, in codCar int )
+    begin
+		insert into Productos (codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor,
+        existencia, idTipoProducto, codigoProveedor)
+        values (codPro, descripPro, precioU, precioD, precioM, existenciaPro, idTipo, codCar);
+    end$$
+delimiter ;
+
+call sp_agregarProducto(3, "kit kat", 0.50, 7, 50, 3, 1, 1);
+
+delimiter $$
+create procedure sp_listarProductos ()
+	begin
+    select codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor,
+        existencia, idTipoProducto, codigoProveedor from Productos; 
+    end$$
+delimiter ;
+
+call sp_listarProductos();
+
+delimiter $$
+	create procedure sp_buscarProducto(in idPro int)
+    begin
+		select codigoProducto, descripcionProducto, precioUnitario, precioDocena, precioMayor,
+        existencia, idTipoProducto, codigoProveedor from Productos where codigoProducto = idPro;
+    end$$
+delimiter ;
+
+delimiter $$
+create procedure sp_eliminarProducto(in codPro varchar(45))
+begin 
+	delete from Productos where codigoProducto = codPro;
+end $$
 delimiter ;
