@@ -280,28 +280,6 @@ public class MenuProductosController implements Initializable {
     }
         
     public void guardar(){
-        /*Productos registro = new Productos();
-        registro.setCodigoProducto(Integer.parseInt(txtCodigoPro.getText()));
-        registro.setDescripcionProducto(txtDescripcionPro.getText());
-        registro.setPrecioUnitario(Double.parseDouble(txtPrecioUPro.getText()));
-        registro.setPrecioDocena(Double.parseDouble(txtPrecioDoPro.getText()));
-        registro.setPrecioMayor(Double.parseDouble(txtPrecioMPro.getText()));
-        registro.setExistencia(Integer.parseInt(txtExistenciaPro.getText()));
-        registro.setCodigoProveedor(((Proveedores) cmbTipoProducto.getSelectionModel().getSelectedItem()).getCodigoProveedor());
-        registro.setIdTipoProducto(((TipoProducto) cmbProveedores.getSelectionModel().getSelectedItem()).getIdTipoProducto());*/
-              
-                  /*
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_agregarProducto(?, ?, ?, ?, ?, ?, ?, ?)}");
-            procedimiento.setInt(1, registro.getCodigoProducto());
-            procedimiento.setString(2, registro.getDescripcionProducto());
-            procedimiento.setDouble(3, registro.getPrecioUnitario());
-            procedimiento.setDouble(4, registro.getPrecioDocena());
-            procedimiento.setDouble(5, registro.getPrecioMayor());
-            procedimiento.setInt(6, registro.getExistencia());
-            procedimiento.setInt(7, registro.getIdTipoProducto());
-            procedimiento.setInt(8, registro.getCodigoProveedor());
-            procedimiento.execute();
-            listaProductos.add(registro);*/
         Productos registro = new Productos();
         registro.setCodigoProducto(Integer.parseInt(txtCodigoPro.getText()));
         registro.setDescripcionProducto(txtDescripcionPro.getText());
@@ -337,8 +315,8 @@ public class MenuProductosController implements Initializable {
                 desactivarControles();
                 limpiarControles();
                 btnAgregarP.setText("Agregar");
-                btnEditarP.setText("Editar");
-                btnEliminarP.setDisable(false);
+                btnEliminarP.setText("Eliminar");
+                btnEditarP.setDisable(false);
                 btnReportesP    .setDisable(false);
                 imgAgregar.setImage((new Image("/org/andresartiga/images/ImagenAgregar.png")));
                 imgEliminar.setImage((new Image("/org/andresartiga/images/ImagenEliminar.png")));
