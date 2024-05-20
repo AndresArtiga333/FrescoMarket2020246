@@ -115,14 +115,14 @@ public class MenuProductosController implements Initializable {
     
     public void cargarDatos(){
         tblProductos.setItems(getProductos());
-        colCodigoPro.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("codigoProducto"));
-        colDescripcionPro.setCellValueFactory(new PropertyValueFactory<Productos, String>("descripcionProducto"));
-        colPrecioUPro.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioUnitario"));
-        colPrecioDoPro.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioDocena"));
-        colPrecioMPro.setCellValueFactory(new PropertyValueFactory<Productos, Double>("precioMayor"));
-        colExistenciaPro.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("existencia"));
-        colTipoProducto.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("idTipoProducto"));
-        colProveedores.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("codigoProveedor"));
+        colCodigoPro.setCellValueFactory(new PropertyValueFactory<>("codigoProducto"));
+        colDescripcionPro.setCellValueFactory(new PropertyValueFactory<>("descripcionProducto"));
+        colPrecioUPro.setCellValueFactory(new PropertyValueFactory<>("precioUnitario"));
+        colPrecioDoPro.setCellValueFactory(new PropertyValueFactory<>("precioDocena"));
+        colPrecioMPro.setCellValueFactory(new PropertyValueFactory<>("precioMayor"));
+        colExistenciaPro.setCellValueFactory(new PropertyValueFactory<>("existencia"));
+        colTipoProducto.setCellValueFactory(new PropertyValueFactory<>("idTipoProducto"));
+        colProveedores.setCellValueFactory(new PropertyValueFactory<>("codigoProveedor"));
     }
     
     public void seleccionar(){
@@ -317,7 +317,7 @@ public class MenuProductosController implements Initializable {
                 btnAgregarP.setText("Agregar");
                 btnEliminarP.setText("Eliminar");
                 btnEditarP.setDisable(false);
-                btnReportesP    .setDisable(false);
+                btnReportesP.setDisable(false);
                 imgAgregar.setImage((new Image("/org/andresartiga/images/ImagenAgregar.png")));
                 imgEliminar.setImage((new Image("/org/andresartiga/images/ImagenEliminar.png")));
                 tipoDeOperaciones = MenuProductosController.operaciones.NINGUNO;

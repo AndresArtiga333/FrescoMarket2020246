@@ -87,5 +87,9 @@ public class Empleados {
         this.idCargoEmpleado = idCargoEmpleado;
     }
     
+        @Override
+    public String toString() {
+        return getIdEmpleado() + "    |   "  + getNombresEmpleado() + "    |   " + getApellidosEmpleado();
+    }
     
 }
