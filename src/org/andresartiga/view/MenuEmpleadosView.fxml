@@ -13,8 +13,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuEmpleadosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuEmpleadosController">
    <children>
+      <ImageView fitHeight="543.0" fitWidth="855.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FondoEmpleados.png" />
+         </image>
+      </ImageView>
       <TableView fx:id="tblEmpleados" layoutX="227.0" layoutY="282.0" onMouseClicked="#seleccionar" prefHeight="200.0" prefWidth="614.0">
          <columns>
             <TableColumn fx:id="colCodigoE" prefWidth="103.33338928222656" text="idEmpleado" />

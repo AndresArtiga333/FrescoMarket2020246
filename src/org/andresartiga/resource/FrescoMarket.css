@@ -26,3 +26,10 @@
     -fx-font-size: 10px;
     -fx-text-fill: white;
 }
+
+.button-predeterminado {
+    -fx-background-color: #FB8500; /* Color de fondo */
+    -fx-text-fill: #ffffff; /* Color de texto */
+    -fx-font-weight: bold; /* Fuente en negrita */
+    -fx-border-radius: 12px;
+}

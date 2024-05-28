@@ -13,9 +13,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andresartiga.controller.MenuFacturaController">
    <children>
+      <ImageView fitHeight="488.0" fitWidth="902.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/FondoFactura.png" />
+         </image>
+      </ImageView>
       <TableView fx:id="tblFactura" layoutX="238.0" layoutY="265.0" onMouseClicked="#seleccionar" prefHeight="200.0" prefWidth="614.0">
          <columns>
             <TableColumn fx:id="colCodF" prefWidth="103.33338928222656" text="codigoFactura" />
