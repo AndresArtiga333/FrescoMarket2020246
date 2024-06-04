@@ -15,23 +15,18 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="482.0" fitWidth="854.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/FondoDetalleFactura.png" />
-         </image>
-      </ImageView>
-      <GridPane layoutX="80.0" layoutY="208.0" prefHeight="236.0" prefWidth="134.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <GridPane layoutX="118.0" layoutY="170.0" prefHeight="236.0" prefWidth="134.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <Button fx:id="btnAgregarDf" mnemonicParsing="false" prefHeight="53.0" prefWidth="107.0" styleClass="button-predeterminado" stylesheets="@../resource/FrescoMarket.css" text="Agregar" GridPane.halignment="CENTER">
                <graphic>
@@ -71,28 +66,28 @@
             </Button>
          </children>
       </GridPane>
-      <TableView fx:id="tblDetalleF" layoutX="292.0" layoutY="226.0" prefHeight="240.0" prefWidth="475.0">
-        <columns>
-          <TableColumn fx:id="colCodDf" prefWidth="88.66665649414062" text="Codigo" />
-          <TableColumn fx:id="ColPuDf" prefWidth="100.66665649414062" text="Precio Unitario" />
+      <TableView fx:id="tblDetalleF" layoutX="274.0" layoutY="171.0" prefHeight="240.0" prefWidth="475.0">
+         <columns>
+            <TableColumn fx:id="colCodDf" prefWidth="88.66665649414062" text="Codigo" />
+            <TableColumn fx:id="ColPuDf" prefWidth="100.66665649414062" text="Precio Unitario" />
             <TableColumn fx:id="colCaDf" prefWidth="95.55563354492188" text="Cantidad" />
-            <TableColumn fx:id="colFaDf" prefWidth="92.00006103515625" text="Factura" />
-            <TableColumn fx:id="colPoDf" prefWidth="97.55548095703125" text="Producto" />
-        </columns>
+            <TableColumn fx:id="colFaDf" prefWidth="92.00006103515625" text="Producto" />
+            <TableColumn fx:id="colPoDf" prefWidth="97.55548095703125" text="Compra" />
+         </columns>
       </TableView>
-      <GridPane layoutX="268.0" layoutY="110.0" prefHeight="99.0" prefWidth="231.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <GridPane layoutX="240.0" layoutY="74.0" prefHeight="99.0" prefWidth="231.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <TextField fx:id="txtCodDf" GridPane.columnIndex="1" />
             <TextField fx:id="txtCDf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="17.0" prefWidth="123.0" text="codigoDetalleFactura">
+            <Label prefHeight="17.0" prefWidth="123.0" text="codigoDetalleCompra">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
@@ -104,7 +99,7 @@
             </Label>
          </children>
       </GridPane>
-      <ComboBox fx:id="cmbFaDf" layoutX="555.0" layoutY="114.0" prefWidth="150.0" promptText="Factura" />
-      <ComboBox fx:id="cmbPoDf" layoutX="555.0" layoutY="146.0" prefWidth="150.0" promptText="Producto" />
+      <ComboBox fx:id="cmbPoDf" layoutX="540.0" layoutY="93.0" prefWidth="150.0" promptText="Producto" />
+      <ComboBox fx:id="cmbPoDf1" layoutX="539.0" layoutY="126.0" prefWidth="150.0" promptText="Compra" />
    </children>
 </AnchorPane>

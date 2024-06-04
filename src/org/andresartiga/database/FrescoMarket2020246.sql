@@ -55,6 +55,8 @@ create table Productos(
     constraint FK_codigoProveedor foreign key (codigoProveedor) references Proveedores(codigoProveedor) on delete cascade
 );
 
+
+
 create table Empleados(
 	idEmpleado int primary key,
 	nombresEmpleado varchar(50),
@@ -140,7 +142,7 @@ delimiter ;
 delimiter $$
 create procedure sp_agregarCompras (in numDoc int, in fechaDoc date, descrip varchar(60), totalDoc decimal(10,2))
 begin
-	insert into TipoProducto (Compras.numeroDocumento, Compras.fechaDocumento, Compras.descripcion, Compras.totalDocumento)
+	insert into Compras (Compras.numeroDocumento, Compras.fechaDocumento, Compras.descripcion, Compras.totalDocumento)
     values (numDoc, fechaDoc, descrip, totalDoc);
 end$$
 delimiter ;
@@ -148,7 +150,7 @@ delimiter ;
 delimiter $$
 	create procedure sp_listarCompras ()
     begin
-		select numeroDocumento, fehcaDocumento, descripcion, totalDocumento from Compras;
+		select numeroDocumento, fechaDocumento, descripcion, totalDocumento from Compras;
     end$$
 delimiter ;
 
@@ -164,9 +166,9 @@ delimiter $$
     begin
 		update Compras
 		set
-        TipoProducto.descripcion = descrip
+        descripcion = descrip
         where 
-        TipoProducto.idTipoProducto = idTipo;
+        numeroDocumento = numDoc;
     end$$
 delimiter ;
 
@@ -333,7 +335,6 @@ delimiter $$
     end$$
 delimiter ;
 
-call sp_agregarProducto(3, "kit kat", 0.50, 7, 50, 3, 1, 1);
 
 delimiter $$
 create procedure sp_listarProductos ()
@@ -428,11 +429,19 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_agregarFactura(in numfa int, in es varchar(45), in tot decimal(10,2), in fec varchar(45),
+	create procedure sp_agregarFactura(in numfa int, in es varchar(45), in fec varchar(45),
     in codC int, in idE int)
     begin
 		insert into Factura (numeroFactura, estado, totalFactura, fechaFactura, codigoCliente, idEmpleado)
-        values (numfa, es, tot, fec, codC, idE);
+        values (numfa, es, 0.00 , fec, codC, idE);
+    end$$
+delimiter ;
+
+delimiter$$
+	create procedure sp_buscarFactura(in numFa int)
+    begin 
+		select numeroFactura, estado, totalFactura, fechaFactura, codigoCliente, idEmpleado from Factura
+        where numeroFactura = numFa
     end$$
 delimiter ;
 
@@ -466,14 +475,141 @@ delimiter $$
     end$$
 delimiter ;
 
+delimiter $$
+	create procedure sp_actualizarTotalFactura(in numF int, total decimal(10,2))
+    begin 
+		update Factura set totalFactura = total where numeroFactura = numF;
+    end $$
+delimiter ;
+
+delimiter $$
+	create procedure sp_agregarDetalleFactura(in idDetalleF int, in cant int, in numF int, in codP int)
+    begin
+        declare preU decimal(10,2) ;
+        set preU = (select preciounitario from Productos where codigoProducto = codP); 
+		insert into DetalleFactura(idDetalleFa, precioUnitario, cantidad, numeroFac, codigoProducto)
+        values(idDetalleF, preU, cant, numF, codP);
+    end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_listarDetalleFactura()
+    begin
+		select idDetalleFa, precioUnitario, cantidad, numeroFac, codigoProducto from DetalleFactura;
+    end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_buscarDetalleFactura(in idDetalleF int)
+    begin
+		select idDetalleFa, precioUnitario, cantidad, numeroFac, codigoProducto from DetalleFactura
+        where idDetalleFa = idDetalleF;
+    end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_eliminarDetalleFactura(in idDetalleF int)
+    begin
+		delete from DetalleFactura where idDetalleFa = idDetalleF;
+    end$$
+delimiter ;
+
+
+delimiter $$
+	create procedure sp_actualizarDetalleFactura(in idDetalleF int, in precioU decimal(10,2), in cant int, in numF int, in codP int)
+		begin
+			update DetalleFactura
+            set
+				precioUnitario = precioU,
+                cantidad = cant,
+                numeroFac = numF,
+                codigoProducto = codP
+                where idDetalleFactura = idDetalleF;
+        end$$
+delimiter ;
+
+delimiter $$
+	create procedure sp_agregarDetalleCompra(in idDetalleC int, in costU decimal (10,2), in cantidadC int, idPro int, in numD int)
+		begin 
+			insert into DetalleCompra(idDetalleCo, costoUnitario, cantidadCo, idProducto, numDoc)
+            values(idDetalleC, costU,  cantidadC, idPro, numD);
+        end$$
+delimiter ;
+
 Delimiter $$
 	create trigger tr_DetalleFacturas_After_Insert
-    after insert on Factura
+    before insert on DetalleFactura
     for each row
     begin
-        declare precioU int;
-        set facturavaId = new.facturaId;
-        call sp_calculavalordetalle(facturavaId);
-		
+        declare idP int;
+        declare preU int;
+        set preU = (select precioUnitario from Productos where codigoProducto = idP);
+        
     end $$
 Delimiter ;
+
+Delimiter $$
+	create trigger tr_actualizaprecios_After_Insert
+    after insert on DetalleCompra
+    for each row
+    begin
+        declare CodA int;
+        declare CostoA decimal (10,2);
+        declare CantiA int;
+        set CodA = new.idProducto;
+        set CostoA = new.costoUnitario;
+        set Cantia = new.cantidadCo;
+        update productos set precioUnitario = CostoA * 1.40,
+        precioDocena = CostoA * 1.35, PrecioMayor = CostoA * 1.25, existencia = existencia + Cantia
+        where codigoProducto = CodA;
+        
+    end $$
+Delimiter ;
+
+Delimiter $$
+	create trigger tr_actualizaCompra_After_Insert
+    after insert on DetalleCompra
+    for each row 
+    begin 
+        declare NumC int;
+        declare CostoA decimal (10,2);
+        declare TotalC decimal (10,2);
+        declare Cantia int;
+        set Numc = new.numDoc;
+        set CostoA = new.costoUnitario;
+        set Cantia = new.cantidadCo;
+        set TotalC = CostoA * Cantia;
+        update Compras set totalDocumento = totalDocumento + totalC where numeroDocumento = NumC;
+    end $$
+Delimiter ;
+
+Delimiter $$
+	create trigger tr_actualizarFactura_After_Insert
+    after insert on DetalleFactura
+    for each row 
+    begin 
+        declare idFac int;
+        declare precio decimal (10,2);
+        declare Can decimal(10,2);
+        declare total decimal(10,2);
+        set idFac = new.numeroFac;
+        set precio = new.precioUnitario;
+        set Can = new.cantidad;
+        set total = precio * Can;
+        update Factura set totalFactura = totalFactura + total where numeroFactura = idFac;
+    end $$
+Delimiter ;
+
+drop trigger tr_actualizarFactura_After_Insert;
+
+call sp_agregarFactura(2, "activa", 0.0, "2020-09-1", 2, 90);
+call sp_agregarDetalleFactura(4,10, 3, 1);
+select * from Productos;
+select* from TipoProducto;
+select * from Compras;
+call sp_eliminarDetalleFactura(3);
+select * from DetalleCompra;
+select* from DetalleFactura;
+select * from Empleados;
+select * from Factura;
+select * from Clientes;

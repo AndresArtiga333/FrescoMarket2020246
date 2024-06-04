@@ -260,6 +260,7 @@ public class MenuFacturaController implements Initializable {
         switch (tipoDeOperaciones) {
             case NINGUNO:
                 activarControles();
+                txtTot.setEditable(false);
                 btnAgregarF.setText("Guardar");
                 btnEliminarF.setText("Cancelar");
                 btnEditarF.setDisable(true);
@@ -291,18 +292,16 @@ public class MenuFacturaController implements Initializable {
         Factura registro = new Factura();
         registro.setNumeroFactura(Integer.parseInt(txtCodF.getText()));
         registro.setEstado(txtEs.getText());
-        registro.setTotalFactura(Double.parseDouble(txtTot.getText()));
         registro.setFechaFactura(txtFe.getText());
         registro.setCodigoCliente((((Clientes)cmbC.getSelectionModel().getSelectedItem()).getCodigoCliente()));
         registro.setIdEmpleado(((Empleados)cmbE.getSelectionModel().getSelectedItem()).getIdEmpleado());
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("call sp_agregarFactura(?,?,?,?,?,?);");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("call sp_agregarFactura(?,?,?,?,?);");
             procedimiento.setInt(1, registro.getNumeroFactura());
             procedimiento.setString(2, registro.getEstado());
-            procedimiento.setDouble(3, registro.getTotalFactura());
-            procedimiento.setString(4, registro.getFechaFactura());
-            procedimiento.setInt(5, registro.getCodigoCliente());
-            procedimiento.setInt(6, registro.getIdEmpleado());
+            procedimiento.setString(3, registro.getFechaFactura());
+            procedimiento.setInt(4, registro.getCodigoCliente());
+            procedimiento.setInt(5, registro.getIdEmpleado());
             procedimiento.execute();
             listaF.add(registro);
 
