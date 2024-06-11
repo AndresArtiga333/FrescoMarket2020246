@@ -643,9 +643,11 @@ delete from productos where codigoProducto = 2;
 select * from proveedores;
 create view vw_Proveedores as select pv.nombreProveedor, pv.nitProveedor, pv.direccionProveedor, pd.descripcionProducto, pv.paginaWeb from 
 proveedores pv join productos pd on pv.codigoProveedor = pd.codigoProveedor
-order by pv.nombreProveedor,pd.codigoProducto;
+order by pd.codigoProducto;
+select * from vw_Proveedores;
 drop view vw_Proveedores;
 select*from Proveedores;
+delete from Proveedores where codigoProveedor = 2;
 select * from Productos;
 select * from Compras;
 select * from Clientes;

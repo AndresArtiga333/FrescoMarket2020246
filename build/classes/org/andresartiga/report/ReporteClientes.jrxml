@@ -2,10 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteClientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="945da993-4671-40da-9db7-e53c26cfc114">
 	<property name="ireport.zoom" value="2.357947691000002"/>
 	<property name="ireport.x" value="47"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="110"/>
 	<queryString>
-		<![CDATA[select * from Clientes;
-]]>
+		<![CDATA[select * from Clientes;]]>
 	</queryString>
 	<field name="codigoCliente" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -68,7 +67,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="75" y="12" width="57" height="20" uuid="ae5141ef-7797-4d7b-8b7c-272a4fcb071b"/>
-				<text><![CDATA[Nombres]]></text>
+				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="151" y="13" width="68" height="20" uuid="6d6d4725-956d-44b2-9368-050f6cfb1f86"/>

@@ -615,8 +615,8 @@ select * from Productos;
 select* from TipoProducto;
 select * from Compras;
 select * from Proveedores;
-call sp_eliminarDetalleFactura(1);
-call sp_eliminarDetalleCompra(1);
+call sp_eliminarDetalleFactura(2);
+call sp_eliminarDetalleCompra(3);
 call sp_eliminarFactura(1);
 select * from DetalleCompra;
 select* from DetalleFactura;
@@ -639,6 +639,7 @@ select * from vw_Productos;
 call sp_listarDetalleFactura();
 select * from detallecompra;
 SELECT * FROM productos;
+delete from productos where codigoProducto = 2;
 select * from proveedores;
 create view vw_Proveedores as select pv.nombreProveedor, pv.nitProveedor, pv.direccionProveedor, pd.descripcionProducto, pv.paginaWeb from 
 proveedores pv join productos pd on pv.codigoProveedor = pd.codigoProveedor
@@ -649,3 +650,10 @@ select * from Productos;
 select * from Compras;
 select * from Clientes;
 -- alter user 'root'@'localhost' identified with mysql_native_password by '1234';
+
+select * from DetalleFactura 
+join Factura on DetalleFactura.numeroFac = Factura.numeroFactura
+join Clientes on Factura.codigoCliente = Clientes.codigoCliente
+join Productos on DetalleFactura.codigoProducto
+where Factura.numeroFactura = 1;
+select * from Empleados; 
