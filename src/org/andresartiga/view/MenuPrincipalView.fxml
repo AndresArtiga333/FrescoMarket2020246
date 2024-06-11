@@ -18,12 +18,14 @@
         <menus>
           <Menu mnemonicParsing="false" text="Modulos">
             <items>
+                  <MenuItem fx:id="btnDetalleC" mnemonicParsing="false" onAction="#handleButtonAction" text="DetalleCompra" />
                   <MenuItem fx:id="btnMenuClientes" mnemonicParsing="false" onAction="#handleButtonAction" text="Clientes" />
                   <MenuItem fx:id="btnProductos" mnemonicParsing="false" onAction="#handleButtonAction" text="Productos" />
                   <MenuItem fx:id="btnMenuProveedores" mnemonicParsing="false" onAction="#handleButtonAction" text="Proveedores" />
                   <MenuItem fx:id="btnMenuTipoProducto" mnemonicParsing="false" onAction="#handleButtonAction" text="TipoProductos" />
                   <MenuItem fx:id="btnCargoP" mnemonicParsing="false" onAction="#handleButtonAction" text="CargoEmpleados" />
                   <MenuItem fx:id="btnEmpleados" mnemonicParsing="false" onAction="#handleButtonAction" text="Empleados" />
+                  <MenuItem fx:id="btnDf" mnemonicParsing="false" onAction="#handleButtonAction" text="DetalleFactura" />
             </items>
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">

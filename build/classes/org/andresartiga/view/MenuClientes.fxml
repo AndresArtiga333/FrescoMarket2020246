@@ -76,7 +76,7 @@
                <graphic>
                   <ImageView fx:id="imgReportes" fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/ImagenReportes.png" />
+                        <Image url="@../images/imgReportes2.png" />
                      </image>
                   </ImageView>
                </graphic></Button>

@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 import org.andresartiga.controller.MenuCargoEmpleadoController;
 import org.andresartiga.controller.MenuClientesController;
 import org.andresartiga.controller.MenuComprasController;
+import org.andresartiga.controller.MenuDetalleCompraController;
+import org.andresartiga.controller.MenuDetalleFacturaController;
 import org.andresartiga.controller.MenuEmpleadosController;
 import org.andresartiga.controller.MenuFacturaController;
 import org.andresartiga.controller.MenuPrincipalControlador;
@@ -168,6 +170,24 @@ public class Principal extends Application {
         try{
             MenuFacturaController vistaF = (MenuFacturaController)cambiarEscena("MenuFacturaView.fxml", 902, 478);
             vistaF.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuDetalleFactura(){
+        try{
+            MenuDetalleFacturaController vistaDf = (MenuDetalleFacturaController)cambiarEscena("MenuDetalleFactura.fxml", 854, 482);
+            vistaDf.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void menuDetalleC(){
+        try{
+            MenuDetalleCompraController vistC = (MenuDetalleCompraController)cambiarEscena("MenuDetalleCompra.fxml", 798, 450);
+            vistC.setEscenarioPrincipal(this);
         }catch(Exception e){
             e.printStackTrace();
         }

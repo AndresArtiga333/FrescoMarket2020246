@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.andresartiga.bean.Clientes;
 import org.andresartiga.db.Conexion;
+import org.andresartiga.report.GenerarReportes;
 import org.andresartiga.system.Principal;
 
 /**
@@ -291,7 +294,7 @@ public class MenuClientesController implements Initializable {
                 btnAgregar.setDisable(false);
                 btnEliminar.setDisable(false);
                 imgEditar.setImage(new Image("/org/andresartiga/images/ImagenActualizar.png"));
-                imgReportes.setImage(new Image("/org/andresartiga/images/ImagenReporte.png"));
+                imgReportes.setImage(new Image("/org/andresartiga/images/imgReportes2.png"));
                 desactivarControles();
                 limpiarControles();
                 tipoDeOperaciones = operaciones.NINGUNO;
@@ -323,8 +326,17 @@ public class MenuClientesController implements Initializable {
         }
     }
     
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoCliente", null);
+        GenerarReportes.mostrarReportes("ReporteClientes.jasper", "Reporte de Clientes", parametros);
+    }
+    
     public void reporte(){
         switch(tipoDeOperaciones){
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
@@ -333,7 +345,7 @@ public class MenuClientesController implements Initializable {
                 btnAgregar.setDisable(false);
                 btnEliminar.setDisable(false);
                 imgEditar.setImage(new Image("/org/andresartiga/images/ImagenActualizar.png"));
-                imgReportes.setImage(new Image("/org/andresartiga/images/ImagenReporte.png"));
+                imgReportes.setImage(new Image("/org/andresartiga/images/imgReportes2.png"));
                 tipoDeOperaciones = operaciones.NINGUNO;
                 break;
         }

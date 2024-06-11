@@ -85,8 +85,8 @@ create table DetalleFactura(
     cantidad int,
     numeroFac int,
     codigoProducto int,
-    foreign key (numeroFac) references Factura(numeroFactura),
-    foreign key (codigoProducto) references Productos(codigoProducto)
+    foreign key (numeroFac) references Factura(numeroFactura) on delete cascade,
+    foreign key (codigoProducto) references Productos(codigoProducto) on delete cascade
 );
 
 create table DetalleCompra(
@@ -95,8 +95,8 @@ create table DetalleCompra(
     cantidadCo int,
     idProducto int,
     numDoc int,
-    foreign key (idProducto) references Productos(codigoProducto),
-    foreign key (numDoc) references Compras(numeroDocumento)
+    foreign key (idProducto) references Productos(codigoProducto) on delete cascade,
+    foreign key (numDoc) references Compras(numeroDocumento) on delete cascade
 );
 
 delimiter $$
@@ -283,6 +283,7 @@ begin
 end$$
 delimiter ;
 
+call sp_listarProveedores();
 delimiter $$
 	create procedure sp_listarProveedores ()
     begin
@@ -429,19 +430,19 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_agregarFactura(in numfa int,  in es varchar(45), in fec varchar(45),
+	create procedure sp_agregarFactura(in numfa int, in es varchar(45), in fec varchar(45),
     in codC int, in idE int)
     begin
-		insert into Factura (numeroFactura, estado, fechaFactura, codigoCliente, idEmpleado)
-        values (numfa, es, fec, codC, idE);
+		insert into Factura (numeroFactura, estado, totalFactura, fechaFactura, codigoCliente, idEmpleado)
+        values (numfa, es, 0.00 , fec, codC, idE);
     end$$
 delimiter ;
 
-delimiter$$
+delimiter $$
 	create procedure sp_buscarFactura(in numFa int)
     begin 
 		select numeroFactura, estado, totalFactura, fechaFactura, codigoCliente, idEmpleado from Factura
-        where numeroFactura = numFa
+        where numeroFactura = numFa;
     end$$
 delimiter ;
 
@@ -493,7 +494,7 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_listarDetalleFactura()
+	create procedure sp_listarDetalleFactura ()
     begin
 		select idDetalleFa, precioUnitario, cantidad, numeroFac, codigoProducto from DetalleFactura;
     end$$
@@ -536,17 +537,21 @@ delimiter $$
         end$$
 delimiter ;
 
-Delimiter $$
-	create trigger tr_DetalleFacturas_After_Insert
-    before insert on DetalleFactura
-    for each row
+delimiter $$
+	create procedure sp_listarDetalleCompra()
     begin
-        declare idP int;
-        declare preU int;
-        set preU = (select precioUnitario from Productos where codigoProducto = idP);
-        
-    end $$
-Delimiter ;
+		select idDetalleCo, costoUnitario, cantidadCo, idProducto, numDoc from DetalleCompra;
+    end$$
+delimiter ;
+call sp_listarDetalleCompra();
+
+delimiter $$
+	create procedure sp_eliminarDetalleCompra(in idDetalleC int)
+		begin
+			delete from Detallecompra where idDetalleCo = idDetalleC;
+        end$$
+delimiter ;
+
 
 Delimiter $$
 	create trigger tr_actualizaprecios_After_Insert
@@ -579,9 +584,10 @@ Delimiter $$
         set CostoA = new.costoUnitario;
         set Cantia = new.cantidadCo;
         set TotalC = CostoA * Cantia;
-        update Compras set totalDocumento = totalDocumento + totalC where numeroDocumento = NumC;
+        update Compras set totalDocumento = totalDocumento + TotalC where numeroDocumento = NumC;
     end $$
 Delimiter ;
+
 
 Delimiter $$
 	create trigger tr_actualizarFactura_After_Insert
@@ -596,20 +602,50 @@ Delimiter $$
         set precio = new.precioUnitario;
         set Can = new.cantidad;
         set total = precio * Can;
-        update Factura set fechaFactura = "fecha1" where numeroFactura = 1;
-        update Factura set totalFactura = precio  where numeroFactura = idFac;
+        update Factura set totalFactura = totalFactura + total where numeroFactura = idFac;
     end $$
 Delimiter ;
 
 drop trigger tr_actualizarFactura_After_Insert;
 
-call sp_agregarDetalleFactura(2,10, 1, 1);
+call sp_agregarFactura(1, "activa", "2020-09-1", 1, 1);
+call sp_agregarDetalleFactura(1,10, 1, 1);
+call sp_agregarDetalleCompra(1,10, 3, 1, 1);
 select * from Productos;
 select* from TipoProducto;
 select * from Compras;
-call sp_eliminarDetalleFactura(2);
+select * from Proveedores;
+call sp_eliminarDetalleFactura(1);
+call sp_eliminarDetalleCompra(1);
+call sp_eliminarFactura(1);
 select * from DetalleCompra;
 select* from DetalleFactura;
-
+select * from Empleados;
 select * from Factura;
+select * from CargoEmpleado;
 select * from Clientes;
+
+create view vw_Productos as
+select Productos.codigoProducto, Productos.descripcionProducto, TipoProducto.descripcion, Proveedores.nombresProveedor
+from Productos
+LEFT JOIN TipoProducto ON Productos.codigoTipoProducto = TipoProducto.idTipoProducto
+LEFT JOIN Proveedores ON Productos.codigoProveedor = Proveedores.codigoProveedor;
+
+
+ 
+ 
+select * from vw_Productos;
+
+call sp_listarDetalleFactura();
+select * from detallecompra;
+SELECT * FROM productos;
+select * from proveedores;
+create view vw_Proveedores as select pv.nombreProveedor, pv.nitProveedor, pv.direccionProveedor, pd.descripcionProducto, pv.paginaWeb from 
+proveedores pv join productos pd on pv.codigoProveedor = pd.codigoProveedor
+order by pv.nombreProveedor,pd.codigoProducto;
+drop view vw_Proveedores;
+select*from Proveedores;
+select * from Productos;
+select * from Compras;
+select * from Clientes;
+-- alter user 'root'@'localhost' identified with mysql_native_password by '1234';

@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +31,7 @@ import org.andresartiga.bean.Empleados;
 import org.andresartiga.bean.Factura;
 import org.andresartiga.bean.Productos;
 import org.andresartiga.db.Conexion;
+import org.andresartiga.report.GenerarReportes;
 import org.andresartiga.system.Principal;
 
 /**
@@ -403,6 +406,8 @@ public class MenuFacturaController implements Initializable {
     
             public void reporte(){
         switch(tipoDeOperaciones){
+            case NINGUNO:
+                imprimirReporte();
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
@@ -416,6 +421,13 @@ public class MenuFacturaController implements Initializable {
                 break;
         }
     }
+            
+            public void imprimirReporte(){
+                Map parametros = new HashMap();
+                int idFac = Integer.valueOf(((Factura)tblFactura.getSelectionModel().getSelectedItem()).getNumeroFactura());
+                parametros.put(idFac, idFac);
+                GenerarReportes.mostrarReportes("ReporteFactura.jasper", "Factura", parametros);
+            }
     
         public void activarControles(){
         txtCodF.setEditable(true);

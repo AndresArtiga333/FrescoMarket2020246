@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteClientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="945da993-4671-40da-9db7-e53c26cfc114">
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="47"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from Clientes;
+]]>
+	</queryString>
+	<field name="codigoCliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nitCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidoCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccionCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefonoCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="correoCliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="-19" y="-23" width="574" height="825" uuid="1d08628e-27f7-48e8-9488-14aee11b0301"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\FondoReporteCliente.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="204" y="15" width="111" height="51" uuid="bb0fd0ac-c273-470e-999b-8760c91f23c2"/>
+				<textElement>
+					<font fontName="Dubai Light" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Clientes]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="445" y="15" width="58" height="55" uuid="8a1ffaf3-4c40-4c1f-83c9-e4cf1d2e2535"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\Logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<line>
+				<reportElement x="32" y="32" width="432" height="1" uuid="e774655a-f259-460b-a2bc-b4fcceca7d73"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="236" y="12" width="28" height="20" uuid="a6ec0945-eb7b-43a1-ac50-49672b4b20d0"/>
+				<text><![CDATA[NIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="12" width="57" height="20" uuid="ae5141ef-7797-4d7b-8b7c-272a4fcb071b"/>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="13" width="68" height="20" uuid="6d6d4725-956d-44b2-9368-050f6cfb1f86"/>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="12" width="34" height="20" uuid="8628b619-1701-425b-8342-7120fb21e78b"/>
+				<text><![CDATA[correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="372" y="13" width="46" height="20" uuid="d6bbe606-6fb1-4a43-b633-e69982189ae0"/>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<rectangle>
+				<reportElement x="58" y="7" width="406" height="20" backcolor="#CCCCCC" uuid="55cea92f-bf45-4834-b87a-01b712de1fe0"/>
+			</rectangle>
+			<textField>
+				<reportElement x="219" y="7" width="45" height="20" uuid="f1722d1c-9b3f-4d7c-ab71-e975edb30691"/>
+				<textFieldExpression><![CDATA[$F{nitCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="7" width="57" height="20" uuid="8994ef52-9271-4b44-ab77-75b09fa22cc6"/>
+				<textFieldExpression><![CDATA[$F{nombreCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="7" width="53" height="20" uuid="952eaaf1-4715-4347-902b-a377c43596dc"/>
+				<textFieldExpression><![CDATA[$F{apellidoCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="284" y="7" width="66" height="20" uuid="1fb17957-9b20-43b2-bcbb-c139b0ffabd1"/>
+				<textFieldExpression><![CDATA[$F{correoCliente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="32" y="35" width="451" height="1" uuid="288442bb-2411-49ff-8e41-b09e5d50a637"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="372" y="7" width="73" height="20" uuid="5fb45aa2-f9f8-409c-8eb8-36f746dd9b72"/>
+				<textFieldExpression><![CDATA[$F{telefonoCliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="89" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="49" y="0" width="102" height="41" uuid="da1a7c7a-7679-4a60-8343-ff7ebaa77245"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\firmaandres.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="49" y="51" width="100" height="1" uuid="0072e704-aaab-4968-9805-8924c47f85ee"/>
+			</line>
+			<staticText>
+				<reportElement x="49" y="64" width="100" height="13" uuid="5c394ad7-9482-4f47-b805-1d7a423f97bf"/>
+				<textElement>
+					<font fontName="Garamond" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Firma del dueño]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="15" splitType="Stretch"/>
+	</summary>
+</jasperReport>
