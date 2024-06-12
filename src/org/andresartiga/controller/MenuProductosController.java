@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +31,7 @@ import org.andresartiga.bean.Productos;
 import org.andresartiga.bean.Proveedores;
 import org.andresartiga.bean.TipoProducto;
 import org.andresartiga.db.Conexion;
+import org.andresartiga.report.GenerarReportes;
 import org.andresartiga.system.Principal;
 
 /**
@@ -402,9 +405,16 @@ public class MenuProductosController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+        public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoProducto", null);
+        GenerarReportes.mostrarReportes("ReporteProductos.jasper", "Reporte de Productos", parametros);
+    }
         public void reporte(){
         switch(tipoDeOperaciones){
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();

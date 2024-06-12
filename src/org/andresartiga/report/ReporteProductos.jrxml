@@ -1,25 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteProductos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="164d88e5-5e79-4fa7-8815-6b8a1f374bcd">
+	<property name="ireport.zoom" value="1.7715610000000015"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from vw_Productos]]>
+	</queryString>
+	<field name="codigoProducto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcionProducto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioUnitario" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreProveedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
-		<band splitType="Stretch"/>
+		<band height="802" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="555" height="802" uuid="5d5523d6-7082-4edc-a2e8-92ce45047ae0"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\FondoReporteCliente.png"]]></imageExpression>
+			</image>
+		</band>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="55" width="115" height="44" uuid="8144bcb3-bd1b-4480-9d68-0a555dde85f0"/>
+				<textElement>
+					<font fontName="Dubai Light" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Productos]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="411" y="44" width="58" height="55" uuid="0155d11f-7f7d-4285-b276-dc1d3db1f962"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\Logo.png"]]></imageExpression>
+			</image>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="85" y="25" width="90" height="20" uuid="8c30931d-dd29-415d-affd-5ea938bf372f"/>
+				<text><![CDATA[Codigo Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="25" width="67" height="20" uuid="c1679b78-0df8-484c-9658-f80e89c10351"/>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="24" width="82" height="20" uuid="821d59e0-0b81-4afa-a5ad-da2581273361"/>
+				<text><![CDATA[Precio Unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="24" width="76" height="20" uuid="380969ec-3d0f-4c99-8379-e7661ba76a6f"/>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="85" y="44" width="372" height="1" uuid="bec2b234-85ad-452e-868e-100918f2d890"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<line>
+				<reportElement x="85" y="47" width="372" height="1" uuid="92bbe1fd-5a60-44de-a208-9072d4cd282b"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement x="85" y="14" width="372" height="20" backcolor="#CCCCCC" uuid="f7549dc7-896b-4fc9-899a-70b98059c031"/>
+			</rectangle>
+			<textField>
+				<reportElement x="114" y="14" width="39" height="20" uuid="86d47167-5dfd-4c19-9360-6e4ba7554a45"/>
+				<textFieldExpression><![CDATA[$F{codigoProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="14" width="67" height="20" uuid="88c9bc18-134b-4769-b2cb-dbca0a767d59"/>
+				<textFieldExpression><![CDATA[$F{descripcionProducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="14" width="65" height="20" uuid="f1d70304-7f74-479c-90e6-725387fb1d50"/>
+				<textFieldExpression><![CDATA[$F{precioUnitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="14" width="76" height="20" uuid="e8253145-c419-4ad3-a7d0-88db518292cf"/>
+				<textFieldExpression><![CDATA[$F{nombreProveedor}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="88" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="69" y="10" width="102" height="41" uuid="c901d5dc-31b9-46e7-aad2-550f9c6a6917"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\firmaandres.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="69" y="51" width="100" height="1" uuid="298ade40-63da-4f82-8081-1d83f8f14cf6"/>
+			</line>
+			<staticText>
+				<reportElement x="69" y="62" width="100" height="13" uuid="a83b5d33-ffd5-48c6-a039-9e841047572d"/>
+				<textElement>
+					<font fontName="Garamond" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Firma del dueño]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="71" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

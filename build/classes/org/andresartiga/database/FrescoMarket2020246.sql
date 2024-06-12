@@ -626,13 +626,10 @@ select * from CargoEmpleado;
 select * from Clientes;
 
 create view vw_Productos as
-select Productos.codigoProducto, Productos.descripcionProducto, TipoProducto.descripcion, Proveedores.nombresProveedor
+select Productos.codigoProducto, Productos.descripcionProducto, Productos.precioUnitario, Proveedores.nombreProveedor
 from Productos
-LEFT JOIN TipoProducto ON Productos.codigoTipoProducto = TipoProducto.idTipoProducto
 LEFT JOIN Proveedores ON Productos.codigoProveedor = Proveedores.codigoProveedor;
-
-
- 
+drop view vw_Productos; 
  
 select * from vw_Productos;
 
@@ -643,17 +640,23 @@ delete from productos where codigoProducto = 2;
 select * from proveedores;
 create view vw_Proveedores as select pv.nombreProveedor, pv.nitProveedor, pv.direccionProveedor, pd.descripcionProducto, pv.paginaWeb from 
 proveedores pv join productos pd on pv.codigoProveedor = pd.codigoProveedor
-order by pv.nombreProveedor,pd.codigoProducto;
+order by pd.codigoProducto;
+select * from vw_Proveedores;
 drop view vw_Proveedores;
 select*from Proveedores;
+delete from Proveedores where codigoProveedor = 2;
 select * from Productos;
 select * from Compras;
 select * from Clientes;
 -- alter user 'root'@'localhost' identified with mysql_native_password by '1234';
 
-select * from DetalleFactura 
+create view vw_Factura as select * from DetalleFactura 
 join Factura on DetalleFactura.numeroFac = Factura.numeroFactura
 join Clientes on Factura.codigoCliente = Clientes.codigoCliente
-join Productos on DetalleFactura.codigoProducto
-where Factura.numeroFactura = 1;
+join Productos on DetalleFactura.codigoProducto = Productos.CodigoProducto
+where Factura.numeroFactura = 2 and DetalleFActura.NumeroFac = 2;
+
+select * from DetalleFactura;
 select * from Empleados; 
+select * from DetalleFactura;
+select * from Factura;
