@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteFactura" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7539c67d-0895-48a8-8dca-cd1f13d65105">
-	<property name="ireport.zoom" value="2.5937424601000068"/>
-	<property name="ireport.x" value="780"/>
-	<property name="ireport.y" value="360"/>
+	<property name="ireport.zoom" value="1.0000000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="133"/>
 	<parameter name="idFac" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -242,7 +242,7 @@ where Factura.numeroFactura = $P{idFac} and DetalleFActura.NumeroFac = $P{idFac}
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="102" splitType="Stretch">
+		<band height="167" splitType="Stretch">
 			<textField>
 				<reportElement x="450" y="10" width="144" height="20" uuid="c18a6a4f-5425-48fb-aade-d392fb022e07"/>
 				<textElement>
@@ -299,6 +299,27 @@ where Factura.numeroFactura = $P{idFac} and DetalleFActura.NumeroFac = $P{idFac}
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="184" y="30" width="196" height="22" uuid="c2060f5e-8c5b-4b55-a682-0d1850569833"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRACIAS POR SU COMPRA]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="54" y="70" width="102" height="41" uuid="e06532b8-8055-4f11-9895-444be91f0662"/>
+				<imageExpression><![CDATA["C:\\Users\\andre\\OneDrive\\Escritorio\\FrescoMarket1\\src\\org\\andresartiga\\images\\firmaandres.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="54" y="112" width="100" height="13" uuid="ae3db279-d2e0-4e48-ab5c-8ac414a2c09d"/>
+				<textElement>
+					<font fontName="Garamond" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Firma de la empresa]]></text>
+			</staticText>
+			<line>
+				<reportElement x="54" y="111" width="100" height="1" uuid="6c1510c3-3225-4570-8551-b60f78ae432a"/>
 			</line>
 		</band>
 	</columnFooter>
