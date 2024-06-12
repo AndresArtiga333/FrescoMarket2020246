@@ -620,9 +620,14 @@ order by pd.codigoProducto;
 
 -- alter user 'root'@'localhost' identified with mysql_native_password by '1234';
 
-create view vw_Factura as select * from DetalleFactura 
+select * from DetalleFactura 
 join Factura on DetalleFactura.numeroFac = Factura.numeroFactura
 join Clientes on Factura.codigoCliente = Clientes.codigoCliente
 join Productos on DetalleFactura.codigoProducto = Productos.CodigoProducto
 where Factura.numeroFactura = 2 and DetalleFActura.NumeroFac = 2;
-
+call sp_agregarClientes(1, "12791082", "javier", "hernandez", "Zona 14", "89764356", "jher@gmail");
+call sp_agregarProveedor(1,"8192821", "Diego", "Bercian", "1-1,1 calle, zona 3", "no", "correo","si");
+call sp_agregarTipoProducto(1,"caucho");
+call sp_agregarProducto(1, "pelotas", 0.0, 0.0, 0.0, 5, 1, 1);
+call sp_agregarDetalleCompra(1, 2, 3, 1, 1);
+call sp_agregar
